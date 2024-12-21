@@ -244,25 +244,31 @@ def show_monitoring_area(coords):
     print(MESSAGES[LANG]['verify_area'])
     print(MESSAGES[LANG]['confirm_area'])
     
-    while True:
-        if keyboard.is_pressed('y'):
-            cv2.destroyAllWindows()
-            return True
-        elif keyboard.is_pressed('n'):
-            cv2.destroyAllWindows()
-            return False
-        cv2.waitKey(1)
+
+    # added auto detection for diffrent OS
+    if os.name == 'posix': # UNIX like operating system such as Linux and MacOS
+        while True:
+            key = keyboard.read_key()
+            if key == 16: # y = 16
+                cv2.destroyAllWindows()
+                return True
+            elif key == 45: # n = 45
+                cv2.destroyAllWindows()
+                return False
     
-    ############### for MacOS ###############
-    # while True:
-    #     key = keyboard.read_key()
-    #     if key == 16: # y = 16
-    #         cv2.destroyAllWindows()
-    #         return True
-    #     elif key == 45: # n = 45
-    #         cv2.destroyAllWindows()
-    #         return False
-    #########################################
+    elif os.name == 'nt': # Windows system
+        while True:
+            if keyboard.is_pressed('y'):
+                cv2.destroyAllWindows()
+                return True
+            elif keyboard.is_pressed('n'):
+                cv2.destroyAllWindows()
+                return False
+            cv2.waitKey(1)
+    else:
+        raise AssertionError("Your Operating System is not supported")
+    
+
 
 def get_button_coordinates():
     """Function to handle button coordinate initialization"""
@@ -375,7 +381,6 @@ try:
         if keyboard.is_pressed('delete'):
             print(MESSAGES[LANG]['exit_detected'])
             break
-
         if check_and_click(*button_coords, brightness_threshold):
             print(MESSAGES[LANG]['button_dark'])
             current_session['dark_duration'] += check_interval

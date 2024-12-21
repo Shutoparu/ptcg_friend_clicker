@@ -74,6 +74,10 @@
    ```bash
    python auto_add_friend.py
    ```  
+   注意：Mac用戶需要以sudo權限執行，否則過程中會報錯
+   ```bash
+   sudo python auto_add_friend.py
+   ```
 
 2. 工具會自動開始連點好友請求按鈕。  
 
@@ -122,11 +126,15 @@
 - 請確保你搶神包的 ID 是正確的。
 - 本工具僅供學術研究及個人使用，請勿進行任何違反遊戲規章的操作。  
 
-- ### 補充註記 for MacOS Sequoia 15 以上版本
-  - MacOS 15.0版本開始，Apple修改了關於螢幕錄取用的隱私權政策。
-  - 目前Pillow模組尚未對於這個OS版本更新，因此暫時不支援 MacOS Sequoia 15.0 以後的版本。
-  - MacOS Monoma 14 (含)之前的版本則沒有這個問題，請放心使用。
-  - 須將 `auto_add_friend.py` 中 `for MacOS` 後面的註解取消才能正常使用。
+- ### 關於蘋果系統的補充註記
+  - 適用裝置：支援iPhone鏡像輸出的Mac與iPhone（作業系統MacOS 15以上的Apple晶片Mac，iOS 18以上的iPhone，詳見[Apple官方教學（中文）](https://support.apple.com/zh-tw/120421#requirements)）
+  - MacOS在運行中可能會出現以下警告框：
+  <img alt='warning' src="./warning_img/warning.png" height="200">
+  - 此時請按下面的按鈕進入設定，並將終端機（terminal）選項關閉：
+  <img alt='setting' src="./warning_img/setting.png" height="200">
+  - 或是自行從系統偏好設定中尋找此頁面（安全與隱私-螢幕與系統錄音）：
+  <img alt='path' src="./warning_img/path.png" height="200">
+  - 更改後重新運行即可
 
 ---  
 
